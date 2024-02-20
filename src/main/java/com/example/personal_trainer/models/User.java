@@ -24,6 +24,12 @@ public class User {
     @Column
     private String password;
 
+    @Column
+    private Integer weight;
+
+    @Column
+    private String ageGroup;
+
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"user"})
     private List<Workout> workouts;
@@ -32,14 +38,34 @@ public class User {
 
     }
 
-    public User(String name, String email, String password) {
+    public User(String name, String email, String password, Integer weight, String ageGroup) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.weight = weight;
+        this.ageGroup = ageGroup;
         this.workouts = new ArrayList<>();
     }
 
     // Getters and Setters
+
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public String getAgeGroup() {
+        return ageGroup;
+    }
+
+    public void setAgeGroup(String ageGroup) {
+        this.ageGroup = ageGroup;
+    }
+
     public Long getId() {
         return id;
     }

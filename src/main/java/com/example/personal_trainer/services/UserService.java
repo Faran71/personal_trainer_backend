@@ -26,7 +26,7 @@ public class UserService {
         if(userRepository.findByEmail(userDTO.getEmail())!=null){
             return null;
         }
-        User user = new User(userDTO.getName(),userDTO.getEmail(),encryptPassword);
+        User user = new User(userDTO.getName(),userDTO.getEmail(),encryptPassword, userDTO.getWeight(), userDTO.getAgeGroup());
         return this.userRepository.save(user);
     }
 

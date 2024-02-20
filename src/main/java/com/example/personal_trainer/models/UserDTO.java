@@ -8,13 +8,35 @@ public class UserDTO {
 
     private String password;
 
+    private Integer weight;
+
+    private String ageGroup;
+
     public UserDTO() {
     }
 
-    public UserDTO(String name, String email, String password){
+    public UserDTO(String name, String email, String password, Integer weight, String ageGroup){
         this.name = name;
         this.email = email;
         this.password = password;
+        this.weight = weight;
+        this.ageGroup = ageGroup;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public String getAgeGroup() {
+        return ageGroup;
+    }
+
+    public void setAgeGroup(String ageGroup) {
+        this.ageGroup = ageGroup;
     }
 
     public String getName() {

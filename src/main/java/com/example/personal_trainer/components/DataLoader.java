@@ -24,7 +24,16 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception{
 
         String encryptPassword = passwordEncoder.encode("12345");
-        User user = new User("Steve","@gmail",encryptPassword);
+        User user = new User("Steve","@gmail",encryptPassword, 60, "18-40");
         userRepository.save(user);
     }
 }
+
+
+
+
+
+
+
+
+
