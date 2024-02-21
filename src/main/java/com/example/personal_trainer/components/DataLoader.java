@@ -1,6 +1,7 @@
 package com.example.personal_trainer.components;
 
 import com.example.personal_trainer.models.User;
+import com.example.personal_trainer.models.Workout;
 import com.example.personal_trainer.repositories.UserRepository;
 import com.example.personal_trainer.repositories.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -26,6 +30,9 @@ public class DataLoader implements ApplicationRunner {
         String encryptPassword = passwordEncoder.encode("12345");
         User user = new User("Steve","@gmail",encryptPassword, 60, "18-40");
         userRepository.save(user);
+
+        Workout workout = new Workout(LocalDate.now(), LocalTime.now(),"Run",20,"Easy run",user);
+        workoutRepository.save(workout);
     }
 }
 

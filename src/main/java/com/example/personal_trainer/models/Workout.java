@@ -25,6 +25,9 @@ public class Workout {
     private String activity;
 
     @Column
+    private Integer duration;
+
+    @Column
     private String description;
 
     @ManyToOne
@@ -36,15 +39,25 @@ public class Workout {
 
     }
 
-    public Workout(LocalDate workoutDate, LocalTime workoutTime, String activity, String description, User user) {
+    public Workout(LocalDate workoutDate, LocalTime workoutTime, String activity, Integer duration, String description, User user) {
         this.workoutDate = workoutDate;
         this.workoutTime = workoutTime;
         this.activity = activity;
+        this.duration = duration;
         this.description = description;
         this.user = user;
     }
 
     //Getters and Setters
+
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
 
     public Long getId() {
         return id;

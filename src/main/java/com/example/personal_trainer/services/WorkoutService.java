@@ -22,13 +22,14 @@ public class WorkoutService {
 
     public List<Workout> findAllWorkouts(){return workoutRepository.findAll();}
 
-    public Workout createWorkout(Long userId, String activity, String description){
+    public Workout createWorkout(Long userId, String activity, Integer duration, String description){
         Workout newWorkout = new Workout();
         User user = userRepository.findById(userId).get();
         newWorkout.setUser(user);
         newWorkout.setWorkoutDate(LocalDate.now());
         newWorkout.setWorkoutTime(LocalTime.now());
         newWorkout.setActivity(activity);
+        newWorkout.setDuration(duration);
         newWorkout.setDescription(description);
         workoutRepository.save(newWorkout);
         return newWorkout;
