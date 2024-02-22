@@ -1,6 +1,9 @@
 package com.example.personal_trainer.controllers;
 
+import com.example.personal_trainer.models.User;
 import com.example.personal_trainer.models.Workout;
+import com.example.personal_trainer.models.WorkoutDTO;
+import com.example.personal_trainer.repositories.UserRepository;
 import com.example.personal_trainer.repositories.WorkoutRepository;
 import com.example.personal_trainer.services.WorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping({"/workouts"})
@@ -20,14 +24,18 @@ public class WorkoutController {
     @Autowired
     WorkoutRepository workoutRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping
     public ResponseEntity<List<Workout>> getAllWorkouts(){
         return new ResponseEntity<>(workoutService.findAllWorkouts(), HttpStatus.FOUND);
     }
 
     @PostMapping(value = "postWorkout/{userId}")
-    public ResponseEntity<List<Workout>> postTweet(@PathVariable Long userId, @RequestBody String activity, @RequestBody Integer duration, @RequestBody String description){
-        Workout createWorkout = workoutService.createWorkout(userId, activity, duration,description);
-        return new ResponseEntity<>(workoutRepository.findAll() ,HttpStatus.CREATED);
+    public ResponseEntity<Optional<User>> postWorkout(@PathVariable Long userId, @RequestBody WorkoutDTO workoutDTO){
+//        Instead of returning all workouts I am going to return the user info as the user object contains all information needed.
+        Workout createWorkout = workoutService.createWorkout(userId, workoutDTO.getActivity(), workoutDTO.getDuration(),workoutDTO.getDescription());
+        return new ResponseEntity<>(userRepository.findById(userId) ,HttpStatus.CREATED);
     }
 }
