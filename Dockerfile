@@ -1,21 +1,9 @@
-#FROM maven:3.8.5-openjdk-17 AS build
-#COPY . .
-#RUN mvn clean package -DskipTests
-#
-#FROM openjdk:17.0.1-jdk-slim
-#COPY --from=build /target/personal_trainer-0.0.1-SNAPSHOT.jar personal_trainer.jar
-#EXPOSE 8080
-#ENTRYPOINT ["java","-jar","personal_trainer.jar"]
-
-# Stage 1: Build Stage
 FROM maven:3.8.5-openjdk-17 AS build
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
+COPY . .
 RUN mvn clean package -DskipTests
 
-# Stage 2: Production Stage
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /app/target/personal_trainer-0.0.1-SNAPSHOT.jar personal_trainer.jar
+COPY --from=build /target/personal_trainer-0.0.1-SNAPSHOT.jar personal_trainer.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","personal_trainer.jar"]
+
