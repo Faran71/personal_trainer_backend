@@ -1,6 +1,7 @@
 package com.example.personal_trainer.controllers;
 
 import com.example.personal_trainer.authentication.LogInForm;
+import com.example.personal_trainer.models.ChangePasswordDTO;
 import com.example.personal_trainer.models.User;
 import com.example.personal_trainer.models.UserDTO;
 import com.example.personal_trainer.services.UserService;
@@ -33,5 +34,11 @@ public class UserController {
         User checkUser = userService.checkCredentials(logInForm.getEmail(), logInForm.getPassword());
         return checkUser != null ? new ResponseEntity<>(checkUser,HttpStatus.ACCEPTED) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 //        return new ResponseEntity<>(checkUser, HttpStatus.OK);
+    }
+
+    @PutMapping("/changePassword")
+    public ResponseEntity<User> changePassword(@RequestBody ChangePasswordDTO changePasswordDTO){
+        User newPasswordUser = userService.changePassword(changePasswordDTO.getEmail(), changePasswordDTO.getPassword(), changePasswordDTO.getNewPassword());
+        return newPasswordUser != null ? new ResponseEntity<>(newPasswordUser,HttpStatus.ACCEPTED) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 }

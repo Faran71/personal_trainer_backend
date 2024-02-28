@@ -40,4 +40,15 @@ public class UserService {
         // if no user matches then return null
         return null;
     }
+
+    public User changePassword(String email, String password, String newPassword){
+        User user = userRepository.findByEmail(email);
+        if(user != null && passwordEncoder.matches(password, user.getPassword())){
+            String encryptNewPassword = passwordEncoder.encode(newPassword);
+            user.setPassword(encryptNewPassword);
+            userRepository.save(user);
+            return user;
+        }
+         return null;
+    }
 }
