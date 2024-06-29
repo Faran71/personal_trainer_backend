@@ -13,7 +13,7 @@ To set up the project you will need to:
 2. Install postgreSQL.
 3. Clone the project repository from GitHub.
 4. Import the project into your IDE.
-5. Make a postgreSQL database on your system with the following command `createdb twitter`. See the `application.properties` file for the path that the application requires to access the database 
+5. Make a postgreSQL database on your system with the following command `createdb personal_trainer`. See the `application.properties` file for the path that the application requires to access the database 
 6. Run the project.
    
 ## The RESTful route endpoints:
