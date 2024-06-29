@@ -6,9 +6,6 @@ Wanted to make a backend so the user:
 - Add a workout
 - Change password
 
-## Description
-This is the backend for the twitter replica website.
-
 ## Setup instructions for Backend
 
 To set up the project you will need to:
